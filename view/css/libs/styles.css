@@ -1,0 +1,115 @@
+
+h5 {
+  margin-top:35px;
+  margin-bottom:30px;
+}
+
+.new-move-wrapper {
+  width: 180px;
+  margin-left:15px;
+}
+
+.move-select {
+  margin-top: 15px;
+  max-height: 250px;
+  overflow-y: scroll;
+  background: #f7f7f7;
+}
+
+.move-option {
+  padding: 8px;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  align-items: center;
+}
+
+.move-option:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.new-sequence {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+.new-sequence-comp, .sequence-item {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+}
+
+.new-sequence-comp p, .sequence-item p, .current-sequence p {
+  color:red;
+  margin-top:5px;
+  text-decoration: underline;
+  text-align:center;
+}
+
+.new-sequence-comp p:hover, .sequence-item p, .current-sequence p {
+  cursor: pointer;
+}
+
+.plus {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-left: 15px;
+}
+
+.new-seq-btns {
+  text-align:right;
+  padding-bottom:15px;
+  padding-right:15px;
+}
+
+.current-sequences-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.current-sequence {
+  width: 25%;
+  padding: 10px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin: 10px;
+  position: relative;
+}
+
+.current-sequence i {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+  border: 2px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 3px;
+}
+
+.current-sequence i:hover {
+  cursor: pointer;
+}
+
+.start-btn {
+  width: 100%;
+  font-size: 26px;
+  margin: 25px 0;
+}
+
+.nav-wrapper {
+  display:flex;
+  justify-content: space-between;
+}
+
+.nav-wrapper p {
+  position: absolute;
+  right: 25px;
+  margin:0;
+}

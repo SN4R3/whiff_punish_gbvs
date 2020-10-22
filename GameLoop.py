@@ -1,29 +1,39 @@
 import keyboard
 import random
+import eel
 
 import time
 
 class GameLoop:
     def __init__(self, stepsMin, stepsMax, foMin, foMax, sequences):
-        self.stepsMin = stepsMin
-        self.stepsMax = stepsMax
+        print(stepsMin)
+        print(stepsMax)
+        print(foMin)
+        print(foMax)
+
+        self.stepsMin = int(stepsMin)
+        self.stepsMax = int(stepsMax)
         self.steps = random.randrange(stepsMin, stepsMax)
 
         self.foMin = foMin
         self.foMax = foMax
-        self.fake_out = random.uniform(self.foMin, self.foMax)
+        self.fake_out = random.uniform(float(self.foMin), float(self.foMax))
         self.sequences = sequences
-
+        self.running = True
         
         self.status = 'Not Started'
         self.count = 0
-        while True:
+        while self.running:
             self.loop()
             time.sleep(0.032)
 
     def loop(self):
         if keyboard.is_pressed('esc'):
-            quit()
+            self.running = False
+            eel.hasStopped()
+            keyboard.release('d')
+            keyboard.release('A')
+            print('stopped')
 
         print(self.status)
         print(f'Steps: {self.steps}')
@@ -46,20 +56,21 @@ class GameLoop:
                 keyboard.release('A')
 
                 if random.randrange(0, 3) == 2:
-                    self.fake_out = random.uniform(self.foMin, self.foMax)
+                    self.fake_out = random.uniform(float(self.foMin), float(self.foMax))
                     # roll for attack
                     if random.randrange(0, 3) == 2:
+                        time.sleep(0.032)
                         print('ATTACKING')
                         # roll the sequence
                         seq = self.sequences[random.randrange(0, len(self.sequences))]
                         for x in seq:
-                            if isinstance(x, float):
-                                time.sleep(x)
-                            else:
-                                keyboard.press(x)
-                                time.sleep(0.15)
-                                keyboard.release(x)
-                                print(f'KEY PRESSED:{x}')
+                            for y in x:
+                                if isinstance(y, float) or isinstance(y, int):
+                                    time.sleep(y)
+                                keyboard.press(y)
+                                time.sleep(0.015)
+                                keyboard.release(y)
+                                print(f'KEY PRESSED:{y}')
                     else:
                         print(f'FAKEOUT:{self.fake_out}s')
                         time.sleep(self.fake_out)
@@ -69,23 +80,4 @@ class GameLoop:
                 keyboard.press('d')
                 self.status = 'SHIFTING RIGHT'
                 self.count = 0
-                self.steps = random.randrange(self.stepsMin, self.stepsMax)  
-
-
-# def listener(sc):
-#     global running
-#     if keyboard.is_pressed('ctrl+shift+alt'):
-#         running = False
-#     if keyboard.is_pressed('esc'):
-#         quit()
-        
-#     if keyboard.is_pressed('ctrl+shift+space'):
-#         print('~START~')
-#         running = True
-#         ls.enter(0.1, 1, loop, (ls,))
-#         ls.run()
-
-#     s.enter(0.1, 1, listener, (sc,))
-
-# s.enter(0.1, 1, listener, (s,))
-# s.run()
+                self.steps = random.randrange(self.stepsMin, self.stepsMax)   
